@@ -1,37 +1,32 @@
-// function mergeSort(n, arrLength = n.length) {
-//    let arr = [];
-//    let arr2 = [];
-//    if (n.length == 0) return [];
-//    if (n.length == 1) return [n[0]];
-
-//    if (1 < arrLength) {
-//       let mid = Math.floor((1 + arrLength) / 2);
-//     //   mergeSort(n, mid);
-//     //   mergeSort(mid + 1, arrLength);
-//       return mid;
-//    }
-// }
 function merge(x, y) {
    let final = [];
-   //    x = [...n.slice(0, mid)];
-   //    y = [...n.slice(mid)];
-   for (let i = 0; i < x.length || i < y.length; i++) {
-      if (x[i] < y[i]) {
-         //  final = [...x[i], y[i]];
-         final.push(x[i], y[i]);
+   let i = 0;
+   let j = 0;
+   let k = 0;
+   while (i < x.length && j < y.length) {
+      if (x[i] < y[j]) {
+         final[k++] = x[i++];
       } else {
-         final.push(y[i], x[i]);
-         //  final.push(arr2[i]);
+         final[k++] = y[j++];
       }
+   }
+   for (; i < x.length; i++) {
+      final[k++] = x[i];
+   }
+   for (; j < y.length; j++) {
+      final[k++] = y[j];
    }
    return final;
 }
 
+console.log(merge([1, 9, 4], [2, 2, 3]));
+
 function mergeSort(n) {
    if (n.length <= 1) return n;
    let mid = Math.floor((1 + n.length) / 2);
-
-   return merge([...n.slice(0, mid)], [...n.slice(mid)]);
+   let arr = [...n.slice(0, mid)];
+   let arr2 = [...n.slice(mid)];
+   return merge(arr, arr2);
 }
 
-console.log(mergeSort([9, 3, 5, 1, 2, 7, 4, 0]));
+// console.log(mergeSort([9, 3, 8]));
