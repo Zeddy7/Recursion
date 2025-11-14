@@ -19,14 +19,13 @@ function merge(x, y) {
    return final;
 }
 
-console.log(merge([1, 9, 4], [2, 2, 3]));
-
 function mergeSort(n) {
    if (n.length <= 1) return n;
-   let mid = Math.floor((1 + n.length) / 2);
-   let arr = [...n.slice(0, mid)];
-   let arr2 = [...n.slice(mid)];
-   return merge(arr, arr2);
+   
+   let mid = Math.floor(n.length / 2)
+   let arr1 = mergeSort(n.slice(0, mid))
+   let arr2 = mergeSort(n.slice(mid))
+   return merge(arr1, arr2)
 }
 
-// console.log(mergeSort([9, 3, 8]));
+console.log(mergeSort([9, 3, 8, 4, 34, 3]));
